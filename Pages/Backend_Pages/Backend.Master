@@ -1,0 +1,177 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Backend.master.cs" Inherits="Gest_Cinel_2.Pages.Backend_Pages.Backend" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet" />
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="../../Assets/CSS_Elements/style.css" rel="stylesheet" />
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div class="bg_nav">
+            <nav class="sidebar close">
+                <header>
+                    <div class="image-text">
+                        <span class="image">
+                            <img class="logo" src="" alt="logo" />
+                        </span>
+
+                        <div class="cke_button__textarea_icon header-text">
+                        </div>
+                    </div>
+
+                    <i class='bx bx-chevron-right toggle'></i>
+                </header>
+
+                <div class="menu-bar">
+                    <div class="menu">
+                        <li class="search-box">
+                            <i class='bx bx-search-alt-2 icon'></i>
+                            <input type="text" placeholder="Procurar..." />
+                        </li>
+                        <ul class="menu-links">
+                            <li class="nav-link">
+                                <a href="#">
+                                    <i class='bx bx-book-content icon'></i>
+                                    <span class="text nav-text">Reservas</span>
+                                </a>
+                            </li>
+                            <li class="nav-link">
+                                <a href="#">
+                                    <i class='bx bx-notepad icon'></i>
+                                    <span class="text nav-text">Avaliações</span>
+                                </a>
+                            </li>
+                            <li class="nav-link">
+                                <a href="#">
+                                    <i class='bx bx-book-reader icon'></i>
+                                    <span class="text nav-text">Cursos</span>
+                                </a>
+                            </li>
+                            <li class="nav-link">
+                                <a href="#">
+                                    <i class='bx bx-group icon'></i>
+                                    <span class="text nav-text">Grupo Formativo</span>
+                                </a>
+                            </li>
+                            <li class="nav-link">
+                                <a href="#">
+                                    <i class='bx bxs-user-account icon'></i>
+                                    <span class="text nav-text">Utilizadores</span>
+                                </a>
+                            </li>
+                            <li class="nav-link">
+                                <a href="#">
+                                    <i class='bx bx-wallet icon'></i>
+                                    <span class="text nav-text">Pagamentos</span>
+                                </a>
+                            </li>
+                            <li class="nav-link">
+                                <a href="#">
+                                    <i class='bx bx-calendar icon'></i>
+                                    <span class="text nav-text">Reuniões</span>
+                                </a>
+                            </li>
+                            <li class="nav-link">
+                                <a href="#">
+                                    <i class='bx bxs-user-rectangle icon'></i>
+                                    <span class="text nav-text">Formadores</span>
+                                </a>
+                            </li>
+                            <li class="nav-link">
+                                <a href="#">
+                                    <i class='bx bx-dock-left icon'></i>
+                                    <span class="text nav-text">Documentos</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="bottom-content">
+                        <ul>
+                            <li class="nav-link">
+                                <a href="#">
+                                    <i class='bx bx-log-out icon'></i>
+                                    <span class="text nav-text">Logout</span>
+                                </a>
+                            </li>
+
+                            <li class="mode">
+                                <div class="moon-sun">
+                                    <i class='bx bx-moon icon moon'></i>
+                                    <i class='bx bx-sun icon sun'></i>
+                                </div>
+                                <span class="mode-text text">Dark Mode</span>
+
+                                <div class="toggle-switch">
+                                    <span class="switch"></span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </nav>
+
+            <div class="container_backend">
+                <asp:ContentPlaceHolder ID="ContentPlaceHolderBackend1" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
+
+        </div>
+    </form>
+    <script type="text/javascript">
+        const body = document.querySelector("body"),
+            sidebar = body.querySelector(".sidebar"),
+            toggle = body.querySelector(".toggle"),
+            searchBtn = body.querySelector(".search-box"),
+            modeSwitch = body.querySelector(".toggle-switch"),
+            modeText = body.querySelector(".mode-text");
+
+        // Carregar o tema salvo
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            body.classList.add(savedTheme);
+            modeText.innerText = savedTheme === 'dark' ? 'Modo Claro' : 'Modo Escuro';
+        }
+
+        toggle.addEventListener("click", () => {
+            sidebar.classList.toggle("close");
+            let logo = document.querySelector('.sidebar .image .logo');
+            if (sidebar.classList.contains("close")) {
+                logo.classList.remove("animate-logo-open");
+                logo.classList.add("animate-logo-close");
+            } else {
+                logo.classList.remove("animate-logo-close");
+                logo.classList.add("animate-logo-open");
+            }
+        });
+
+        searchBtn.addEventListener("click", () => {
+            sidebar.classList.remove("close");
+        });
+
+        modeSwitch.addEventListener("click", () => {
+            body.classList.toggle("dark");
+
+            if (body.classList.contains("dark")) {
+                modeText.innerText = 'Modo Claro';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                modeText.innerText = 'Modo Escuro';
+                localStorage.setItem('theme', 'light');
+            }
+        });
+    </script>
+</body>
+</html>
